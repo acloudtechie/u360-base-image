@@ -1,14 +1,15 @@
 FROM centos:7
 
 RUN yum update -y && \
-    yum install -y wget nc.x86_64 wget curl unzip && \
+    yum install -y nmap-ncat.x86_64 wget curl unzip && \
     yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
     yum install -y dracut-fips dracut-fips-aesni && \
-    yum clean all
+    yum clean all && rm -rf /var/cache/yum
     
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk/
 
 LABEL name="unify360 base image"  \
+      maintainer="cgi" \
       version="0.0.1"  \
       base="centos:7"  \
       java="openjdk 8"   \
